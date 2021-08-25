@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\TaskTracker;
+use App\Task;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Resources\TaskTracker as TaskTrackerResource;
+
 
 class TaskTimeTackerController extends Controller
 {
@@ -53,9 +57,10 @@ class TaskTimeTackerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function fetchEmployeeTask(Request $request)
     {
-        //
+        $getAllTask=TaskTracker::all();
+        return TaskTrackerResource::collection($getAllTask)->all();
     }
 
     /**

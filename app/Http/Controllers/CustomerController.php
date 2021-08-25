@@ -132,7 +132,7 @@ class CustomerController extends Controller
                 $query->where('is_lead', 0)->where('is_completed',0);
             }
         ])->get();
-        if($allLeads[0]["project"]){
+        if($allLeads && $allLeads[0]["project"]){
             return CustomerResource::collection($allLeads)->all();
         }else{
             return [];

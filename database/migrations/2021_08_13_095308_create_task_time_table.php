@@ -17,6 +17,7 @@ class CreateTaskTimeTable extends Migration
             $table->id();
             $table->integer('employee_id');
             $table->integer('task_id');
+            $table->boolean('is_started')->default(false);
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();

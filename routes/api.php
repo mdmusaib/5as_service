@@ -75,5 +75,5 @@ Route::get('employee/getThisMonth', 'EmployeeController@getThisMonthNotAvailable
 Route::post('employee/assingEmp', 'EmployeeController@assignEmpService');
 Route::post('/updatePayment', 'QuoteController@updatePayment');
 Route::post('/startEndTimer', 'TaskTimeTackerController@startEndTimer');
-
+Route::get('task/fetchEmployeeTask', 'TaskTimeTackerController@fetchEmployeeTask');
 
