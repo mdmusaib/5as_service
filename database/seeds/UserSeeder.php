@@ -77,6 +77,51 @@ class UserSeeder extends Seeder
                 'api_token' => Str::random(60),
                 'remember_token' => Str::random(10),
             ],
+                
+            [
+                'name' => "Photography Lead",
+                'email' => 'photography_lead@5as.com',
+                'password' => Hash::make('admin123'),
+                'phone' => mt_rand(1000000000, 9999999999),
+                'status'=>true,
+                'role'=>6,
+                'api_token' => Str::random(60),
+                'remember_token' => Str::random(10),
+            ],
+                
+            [
+                'name' => "Videography Lead",
+                'email' => 'videography_lead@5as.com',
+                'password' => Hash::make('admin123'),
+                'phone' => mt_rand(1000000000, 9999999999),
+                'status'=>true,
+                'role'=>6,
+                'api_token' => Str::random(60),
+                'remember_token' => Str::random(10),
+            ],
+                
+            [
+                'name' => "Photoshop Lead",
+                'email' => 'photoshop_lead@5as.com',
+                'password' => Hash::make('admin123'),
+                'phone' => mt_rand(1000000000, 9999999999),
+                'status'=>true,
+                'role'=>6,
+                'api_token' => Str::random(60),
+                'remember_token' => Str::random(10),
+            ],
+                
+            [
+                'name' => "Finance Lead",
+                'email' => 'finance_lead@5as.com',
+                'password' => Hash::make('admin123'),
+                'phone' => mt_rand(1000000000, 9999999999),
+                'status'=>true,
+                'role'=>6,
+                'api_token' => Str::random(60),
+                'remember_token' => Str::random(10),
+            ],
+                
             [
                 'name' => "Photography Exec",
                 'email' => 'photography@5as.com',
