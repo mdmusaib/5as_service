@@ -27,11 +27,12 @@ class TaskTracker extends JsonResource
         }
         
         return [
-            'id'=>$this->id,
+            'id'=>$this->id->id,
             "employee"=>User::where('id','=',$this->employee_id)->first(),
             "task"=>$finalResponseObj?$finalResponseObj:[],
             "start_time"=>$this->start_time,
             "end_time"=>$this->end_time,
+            "status"=>$this->is_started,
         ];
     }
 }
