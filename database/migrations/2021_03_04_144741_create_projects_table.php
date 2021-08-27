@@ -19,7 +19,7 @@ class CreateProjectsTable extends Migration
             $table->boolean('status')->default(true);
             $table->enum('current_status', ['CAPTURED', 'FOLLOWUP', 'QUOTESENT', 'NEGOTIATION', 'QUOTEFINAL', 'QUOTECONFIRMED', 'ONHOLD', 'DELAYED', 'CANCELLED'])->default('CAPTURED');
             $table->boolean('is_lead')->default(true);
-            $table->boolean('is_completed')->default(true);
+            $table->boolean('is_completed')->default(false);
             $table->dateTime('next_follow_up')->nullable();
             $table->integer('quote_id');
             $table->smallInteger('created_by')->nullable();

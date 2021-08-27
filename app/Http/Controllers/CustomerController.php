@@ -119,6 +119,13 @@ class CustomerController extends Controller
                 $query->where('is_lead', 1);
             }
         ])->get();
+        if($allLeads && $allLeads[0]["project"]){
+
+            return $allLeads;
+        }else{
+            return [];
+        }
+        
         
         
         return CustomerResource::collection($allLeads)->all();

@@ -24,8 +24,8 @@ class TaskTimeTackerController extends Controller
         $validator = Validator::make($request->all(), [
             'employee_id'=>'required',
             'task_id'=>'required',
-            'start_time'=>'required',
-            'end_time'=>'required',
+            // 'start_time'=>'required',
+            // 'end_time'=>'required',
         ]);
         
         if ($validator->fails()) {
@@ -39,16 +39,27 @@ class TaskTimeTackerController extends Controller
             );
             return new JsonResponse($response, $code);
     }
-    $start_time= new Carbon($request->start_time);
-    $start_time->toTimeString();
-    $end_time= new Carbon($request->end_time);
-    $end_time->toTimeString();
-    $startEndTimer=TaskTracker::create([
-        'employee_id'=>$request->employee_id,
-        "task_id"=>$request->task_id,
-        "start_time"=>$start_time,
-        "end_time"=>$end_time,
-    ]);
+    $checkStatus=TaskTracker::where('task_id','=',$request->task_id)->first();
+    if(!$checkStatus->is_started){
+        $start_time= new Carbon($request->start_time);
+        $start_time->toTimeString();
+        $startEndTimer=TaskTracker::create([
+            'employee_id'=>$request->employee_id,
+            "task_id"=>$request->task_id,
+            "start_time"=>$start_time,
+        ]);
+    }else if($checkStatus->is_started){
+        if($request->end_time){
+            $end_time= new Carbon($request->end_time);
+            $end_time->toTimeString();    
+            $startEndTimer=TaskTracker::create([
+                'employee_id'=>$request->employee_id,
+                "task_id"=>$request->task_id,
+                "start_time"=>$start_time,
+                "end_time"=>$end_time,
+            ]);
+        }
+    }
     return $startEndTimer;
     }
 
