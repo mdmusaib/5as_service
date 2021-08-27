@@ -121,14 +121,14 @@ class CustomerController extends Controller
         ])->get();
         if($allLeads && $allLeads[0]["project"]){
 
-            return $allLeads;
+            return CustomerResource::collection($allLeads)->all();
         }else{
             return [];
         }
         
         
         
-        return CustomerResource::collection($allLeads)->all();
+        
     }
 
     public function fetchAllProject(Request $request)

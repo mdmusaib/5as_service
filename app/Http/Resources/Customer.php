@@ -16,7 +16,7 @@ class Customer extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->project,
+            'id'=>$this->project->id,
             'lead_date'=>$this->created_at,
             'name'=>$this->name,
             'contact_number'=>$this->phone,
