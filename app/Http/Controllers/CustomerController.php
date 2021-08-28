@@ -136,7 +136,7 @@ class CustomerController extends Controller
         
         $allLeads = Customer::with([
             'project' => function ($query) {
-                $query->where('is_lead', 0)->where('is_completed',0);
+                $query->where('is_lead', 1)->where('is_completed',0);
             }
         ])->get();
         if($allLeads && $allLeads[0]["project"]){
