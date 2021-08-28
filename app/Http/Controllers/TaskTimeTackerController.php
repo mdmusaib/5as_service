@@ -10,7 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\TaskTracker as TaskTrackerResource;
-use App\Http\Resources\TimeTracker as TimeTrackerResource;
+use App\Http\Resources\TaskTimer as TimeTrackerResource;
 
 
 class TaskTimeTackerController extends Controller
