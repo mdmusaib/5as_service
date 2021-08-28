@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\TaskTracker as TaskTrackerResource;
+use App\Http\Resources\TimeTracker as TimeTrackerResource;
 
 
 class TaskTimeTackerController extends Controller
@@ -39,7 +40,7 @@ class TaskTimeTackerController extends Controller
             );
             return new JsonResponse($response, $code);
     }
-    $checkStatus=TaskTracker::where('task_id',$request->task_id)->first();
+    return new TimeTrackerResource(TaskTracker::where('task_id',$request->task_id)->first());
     
     if($checkStatus && !$checkStatus->is_started){
         $start_time= Carbon::now();
@@ -49,7 +50,7 @@ class TaskTimeTackerController extends Controller
             "start_time"=>$start_time,
             "is_started"=>true,
         ]);
-        return TaskTracker::where('task_id',$request->task_id)->first();
+        return new TimeTrackerResource(TaskTracker::where('task_id',$request->task_id)->first());
     
     }else if($checkStatus && $checkStatus->is_started){
      
@@ -59,7 +60,7 @@ class TaskTimeTackerController extends Controller
                 "end_time"=>$end_time,
                 "is_started"=>false
             ]);
-            return TaskTracker::where('task_id',$request->task_id)->first();
+            return new TimeTrackerResource(TaskTracker::where('task_id',$request->task_id)->first());
      
     }else{
         $start_time=  Carbon::now();
@@ -73,6 +74,7 @@ class TaskTimeTackerController extends Controller
         return $startEndTimer;
     }
     return $startEndTimer;
+    return new TimeTrackerResource($startEndTimer);
     }
 
     /**
