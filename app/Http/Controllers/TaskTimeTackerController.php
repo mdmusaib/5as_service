@@ -70,7 +70,7 @@ class TaskTimeTackerController extends Controller
             "start_time"=>$start_time,
             "is_started"=>true,
         ]);
-        return $checkStatus;
+        return $startEndTimer;
     }
     return $startEndTimer;
     }
