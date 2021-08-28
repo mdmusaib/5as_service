@@ -27,7 +27,7 @@ class TaskTracker extends JsonResource
         }
         
         return [
-            'id'=>$this->id->id,
+            'id'=>$this->id,
             "employee"=>User::where('id','=',$this->employee_id)->first(),
             "task"=>$finalResponseObj?$finalResponseObj:[],
             "start_time"=>$this->start_time,
