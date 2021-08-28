@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $allUsers = User::all(['id','name']);
+        $allUsers = User::all(['id','name','role']);
         return $allUsers;
     }
 }
