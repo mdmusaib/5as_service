@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\EmployeeAvalability;
 use Carbon\Carbon;
+use App\TaskTracker;
 use App\ProjectService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
@@ -83,7 +84,17 @@ class EmployeeController extends Controller
     }
     
     $assign=Task::create($request->all());
+
+    if($assign){
+     $createTrackerForEmployee=TaskTracker::create([
+            'employee_id'=>$assign->employee_id,
+            "task_id"=>$assign->id,
+            "is_started"=>false,
+        ]);
+     
     return $assign;
+    }
+    
     
     }
 

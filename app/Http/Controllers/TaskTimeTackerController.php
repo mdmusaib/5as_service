@@ -40,7 +40,7 @@ class TaskTimeTackerController extends Controller
             );
             return new JsonResponse($response, $code);
     }
-    return  TaskTracker::where('task_id',$request->task_id)->first();
+    $checkStatus=TaskTracker::where('task_id',$request->task_id)->first();
     
     if($checkStatus && !$checkStatus->is_started){
         $start_time= Carbon::now();
