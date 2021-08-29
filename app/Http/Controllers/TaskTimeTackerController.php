@@ -7,6 +7,7 @@ use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\TaskTracker as TaskTrackerResource;
