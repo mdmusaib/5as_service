@@ -6,8 +6,6 @@ use App\TaskTracker;
 use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\TaskTracker as TaskTrackerResource;
@@ -54,7 +52,11 @@ class TaskTimeTackerController extends Controller
         ]);
              return  TaskTracker::where('task_id',$request->task_id)->first();
         }else{
-           return  new JsonResponse(400,'Already in start status!');
+               $response = array(
+                    'success' => false,
+                    'message' => "Already in start status!",
+                );
+             return  $response;
         }
        
         
@@ -70,7 +72,11 @@ class TaskTimeTackerController extends Controller
             ]);
             return  TaskTracker::where('task_id',$request->task_id)->first();
             }else{
-             return  new JsonResponse(400,'Already in stop status!');
+                 $response = array(
+                    'success' => false,
+                    'message' => "Already in stop status!",
+                );
+             return  $response;
             } 
 
           
