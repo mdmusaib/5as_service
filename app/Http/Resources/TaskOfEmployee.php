@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 use App\Task;
+use App\User;
 use App\ServicesMaster;
 use App\EventMaster;
 use stdClass;
