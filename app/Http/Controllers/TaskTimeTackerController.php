@@ -54,7 +54,7 @@ class TaskTimeTackerController extends Controller
         ]);
              return  TaskTracker::where('task_id',$request->task_id)->first();
         }else{
-            response->json(400,'Already in start status!');
+           return response->json(400,'Already in start status!');
         }
        
         
@@ -70,7 +70,7 @@ class TaskTimeTackerController extends Controller
             ]);
             return  TaskTracker::where('task_id',$request->task_id)->first();
             }else{
-                response->json(400,'Already in stop status!');
+             return  response->json(400,'Already in stop status!');
             } 
 
           
