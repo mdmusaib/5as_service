@@ -6,6 +6,8 @@ use App\TaskTracker;
 use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\TaskTracker as TaskTrackerResource;
@@ -40,21 +42,22 @@ class TaskTimeTackerController extends Controller
             );
             return new JsonResponse($response, $code);
     }
-    $checkStatus=TaskTracker::where('task_id',$request->task_id)->first();
+    $checkStatus=TaskTracker::where('id',$request->task_id)->first();
     
     if($checkStatus && $request->type==="start"){
         $start_time= Carbon::now();
         $start_time->toTimeString();
         if($checkStatus && $checkStatus->is_started===0){
-             $startEndTimer=TaskTracker::where('task_id',$request->task_id)->update([
+             $startEndTimer=TaskTracker::where('id',$request->task_id)->update([
             "start_time"=>$start_time,
             "is_started"=>true,
         ]);
-             return  TaskTracker::where('task_id',$request->task_id)->first();
+             return  TaskTracker::where('id',$request->task_id)->first();
         }else{
+           return  new JsonResponse(400,'Already in start status!');
                $response = array(
                     'success' => false,
-                    'message' => "Already in start status!",
+                    'message' => "Already in stop status!",
                 );
              return  $response;
         }
@@ -66,11 +69,11 @@ class TaskTimeTackerController extends Controller
             $end_time= Carbon::now();
             $end_time->toTimeString();
             if($request->type==="stop"){
-                  $startEndTimer=TaskTracker::where('task_id',$request->task_id)->update([
+                  $startEndTimer=TaskTracker::where('id',$request->task_id)->update([
                 "end_time"=>$end_time,
                 "is_started"=>false
             ]);
-            return  TaskTracker::where('task_id',$request->task_id)->first();
+            return  TaskTracker::where('id',$request->task_id)->first();
             }else{
                  $response = array(
                     'success' => false,
@@ -83,13 +86,13 @@ class TaskTimeTackerController extends Controller
      
     }else{
         if($checkStatus&& $checkStatus->is_started===null){
-            $startEndTimer=TaskTracker::where('task_id',$request->task_id)->update([
+            $startEndTimer=TaskTracker::where('id',$request->task_id)->update([
             "start_time"=>$start_time,
             "is_started"=>true,
         ]);
-             return  TaskTracker::where('task_id',$request->task_id)->first();
+             return  TaskTracker::where('id',$request->task_id)->first();
         }
-       
+        
     }
    
     
@@ -103,9 +106,7 @@ class TaskTimeTackerController extends Controller
     public function fetchEmployeeTask(Request $request)
     {
         $getAllTask=TaskTracker::all();
-        // $getAllTask=Task::all();
-        return EmployeeTasks::collection($task)->all();
-        // return TaskTrackerResource::collection($getAllTask)->all();
+        return TaskTrackerResource::collection($getAllTask)->all();
     }
 
     /**
