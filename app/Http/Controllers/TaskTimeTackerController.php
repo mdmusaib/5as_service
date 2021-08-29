@@ -25,6 +25,7 @@ class TaskTimeTackerController extends Controller
         $validator = Validator::make($request->all(), [
             'employee_id'=>'required',
             'task_id'=>'required',
+            "type"=>'required'
             // 'start_time'=>'required',
             // 'end_time'=>'required',
         ]);
@@ -42,38 +43,49 @@ class TaskTimeTackerController extends Controller
     }
     $checkStatus=TaskTracker::where('task_id',$request->task_id)->first();
     
-    if($checkStatus && !$checkStatus->is_started){
+    if($checkStatus && $request->type==="start"){
         $start_time= Carbon::now();
         $start_time->toTimeString();
-
-        $startEndTimer=TaskTracker::where('task_id',$request->task_id)->update([
+        if($checkStatus && $checkStatus->is_started===0){
+             $startEndTimer=TaskTracker::where('task_id',$request->task_id)->update([
             "start_time"=>$start_time,
             "is_started"=>true,
         ]);
-        return  TaskTracker::where('task_id',$request->task_id)->first();
+             return  TaskTracker::where('task_id',$request->task_id)->first();
+        }else{
+            response->json(400,'Already in start status!');
+        }
+       
+        
     
-    }else if($checkStatus && $checkStatus->is_started){
+    }else if($checkStatus && $checkStatus->is_started===1 && $request->type==="stop"){
      
             $end_time= Carbon::now();
-            $end_time->toTimeString();    
-            $startEndTimer=TaskTracker::where('task_id',$request->task_id)->update([
+            $end_time->toTimeString();
+            if($request->type==="stop"){
+                  $startEndTimer=TaskTracker::where('task_id',$request->task_id)->update([
                 "end_time"=>$end_time,
                 "is_started"=>false
             ]);
             return  TaskTracker::where('task_id',$request->task_id)->first();
+            }else{
+                response->json(400,'Already in stop status!');
+            } 
+
+          
      
     }else{
-        $start_time=  Carbon::now();
-        $start_time->toTimeString();
-        $startEndTimer=TaskTracker::create([
-            'employee_id'=>$request->employee_id,
-            "task_id"=>$request->task_id,
+        if($checkStatus&& $checkStatus->is_started===null){
+            $startEndTimer=TaskTracker::where('task_id',$request->task_id)->update([
             "start_time"=>$start_time,
             "is_started"=>true,
         ]);
-        return $startEndTimer;
+             return  TaskTracker::where('task_id',$request->task_id)->first();
+        }
+        $start_time=  Carbon::now();
+        $start_time->toTimeString();
     }
-    return $startEndTimer;
+   
     
     }
 
