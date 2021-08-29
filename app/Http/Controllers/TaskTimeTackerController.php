@@ -61,7 +61,7 @@ class TaskTimeTackerController extends Controller
        
         
     
-    }else if($checkStatus && $checkStatus->is_started===1 && $request->type==="stop"){
+    }else if($checkStatus && $request->type==="stop"){
      
             $end_time= Carbon::now();
             $end_time->toTimeString();
