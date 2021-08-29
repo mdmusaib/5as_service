@@ -29,6 +29,7 @@ class TaskOfEmployee extends JsonResource
             "employee"=>User::where('id','=',$this->employee_id)->first(),
             "service"=>$finalResponseObj?$finalResponseObj->service:[],
             "event"=>$finalResponseObj?$finalResponseObj->event:[],
+            "status"=>$this->is_started,
             "available_date"=>$this->available_date,
         ];
     }

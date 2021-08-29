@@ -102,10 +102,10 @@ class TaskTimeTackerController extends Controller
      */
     public function fetchEmployeeTask(Request $request)
     {
-        // $getAllTask=TaskTracker::all();
-        $getAllTask=Task::all();
-        // return EmployeeTasks::collection($task)->all();
-        return TaskTrackerResource::collection($getAllTask)->all();
+        $getAllTask=TaskTracker::all();
+        // $getAllTask=Task::all();
+        return EmployeeTasks::collection($task)->all();
+        // return TaskTrackerResource::collection($getAllTask)->all();
     }
 
     /**
