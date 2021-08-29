@@ -61,7 +61,7 @@ class TaskTimeTackerController extends Controller
        
         
     
-    }else if($checkStatus && $request->type==="stop"){
+    }else if($checkStatus && $checkStatus->is_started===1 && $request->type==="stop"){
      
             $end_time= Carbon::now();
             $end_time->toTimeString();
@@ -89,7 +89,7 @@ class TaskTimeTackerController extends Controller
         ]);
              return  TaskTracker::where('task_id',$request->task_id)->first();
         }
-      
+       
     }
    
     

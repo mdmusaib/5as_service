@@ -91,11 +91,16 @@ class EmployeeController extends Controller
             "task_id"=>$assign->id,
             "is_started"=>false,
         ]);
-     
+
     return $assign;
     }
     
     
+    }
+
+    public function fetchEachEmployeeTask(Request $request){
+        $task=Task::all();
+        return $task;
     }
 
     /**
