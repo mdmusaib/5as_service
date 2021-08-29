@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
 use App\Task;
 use Illuminate\Http\Request;
+use App\Http\Resources\TaskOfEmployee as EmployeeTasks;
 
 class EmployeeController extends Controller
 {
@@ -100,6 +101,7 @@ class EmployeeController extends Controller
 
     public function fetchEachEmployeeTask(Request $request){
         $task=Task::all();
+        return EmployeeTasks::collection($task)->all();
         return $task;
     }
 
