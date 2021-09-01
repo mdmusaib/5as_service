@@ -173,4 +173,12 @@ class ProjectController extends Controller
         );
         return ($response);
     }
+     public static function isNullOrEmpty($value)
+    {
+        if (!is_null($value) || !empty($value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
