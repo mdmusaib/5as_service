@@ -13,6 +13,7 @@ use stdClass;
 use App\Customer;
 use App\EventDetail;
 use App\Quote;
+use App\Task;
 use App\Http\Resources\EventDetail as EventDetailResource;
 use \Spatie\Browsershot\Browsershot;
 use PDF;
@@ -138,5 +139,38 @@ class ProjectController extends Controller
             );
             return new JsonResponse($response);
         }
+    }
+
+    public function show(Request $request, Response $response, $id)
+    {
+        $responseObj=new stdClass();
+        $obj=new stdClass();
+        $arr=[];
+        $customer=Customer::find($id);
+        if ($this->isNullOrEmpty($customer)) {
+            $project=Project::find($customer->project_id);
+            $customer->project_id=$project;
+            $responseObj=$customer;
+            $events=EventDetail::where('customer_id', '=', $id)->get();
+            $responseObj->events=EventDetailResource::collection($events)->all();
+            $quotes=Quote::where('id', '=', $project->quote_id)->first();
+            $responseObj->quote=$quotes;
+
+            // get service selected dropdown from db
+            $getSelectedDropdown=Task::where('project_id',$customer->project_id)->get();
+            foreach ($selectedService as $getSelectedDropdown) {
+                $obj->service=$selectedService->service_id;
+                $obj->employee=$selectedService->employee_id;
+                array_push($arr,$obj);
+
+            }
+            $responseObj->service_dropdown=$arr;
+        }
+        $response = array(
+            'code' => $response->status(),
+            'message' => "success",
+            "data" => $responseObj
+        );
+        return ($response);
     }
 }

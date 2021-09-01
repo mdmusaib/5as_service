@@ -79,3 +79,5 @@ Route::get('task/fetchEmployeeTask', 'TaskTimeTackerController@fetchEmployeeTask
 
 Route::get('task/fetchEachEmployeeTask', 'EmployeeController@fetchEachEmployeeTask');
 
+Route::get('project/edit/{id}', 'ProjectController@show');
+
