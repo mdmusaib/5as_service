@@ -161,7 +161,8 @@ class ProjectController extends Controller
             foreach ($getSelectedDropdown as $selectedService) {
                 $obj->service=$selectedService->service_id;
                 $obj->employee=$selectedService->employee_id;
-                array_push($arr,{"service":$selectedService->service_id,"employee":$selectedService->employee_id});
+                $rec = array('service'=>$selectedService->service_id, 'employee'=>$selectedService->employee_id);
+                array_push($arr,$rec);
 
             }
             $responseObj->service_dropdown=$arr;
