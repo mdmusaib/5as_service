@@ -14,6 +14,7 @@ use App\Customer;
 use App\EventDetail;
 use App\Quote;
 use App\Task;
+use App\User;
 use App\Http\Resources\EventDetail as EventDetailResource;
 use \Spatie\Browsershot\Browsershot;
 use PDF;
@@ -157,10 +158,12 @@ class ProjectController extends Controller
             $responseObj->quote=$quotes;
 
             // get service selected dropdown from db
+            $serName=ServicesMaster::where('id', '=', $this->service_id)->first(['name']);
+            $empName=User::where('id',$selectedService->employee_id)->first(['name']);
             $getSelectedDropdown=Task::where('project_id',$project->id)->get();
             foreach ($getSelectedDropdown as $selectedService) {
-                $obj->service=$selectedService->service_id;
-                $obj->employee=$selectedService->employee_id;
+                $obj->service=$serName?$serName->name:"";
+                $obj->employee=$empName?$empName->name:"";
                 $rec = array('service'=>$selectedService->service_id, 'employee'=>$selectedService->employee_id);
                 array_push($arr,$rec);
 
