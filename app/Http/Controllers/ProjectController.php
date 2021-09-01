@@ -15,6 +15,7 @@ use App\EventDetail;
 use App\Quote;
 use App\Task;
 use App\User;
+use App\ServicesMaster;
 use App\Http\Resources\EventDetail as EventDetailResource;
 use \Spatie\Browsershot\Browsershot;
 use PDF;
