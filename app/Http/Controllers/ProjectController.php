@@ -157,7 +157,7 @@ class ProjectController extends Controller
             $responseObj->quote=$quotes;
 
             // get service selected dropdown from db
-            $getSelectedDropdown=Task::where('project_id',$customer->project_id)->get();
+            $getSelectedDropdown=Task::where('project_id',$project->id)->get();
             foreach ($getSelectedDropdown as $selectedService) {
                 $obj->service=$selectedService->service_id;
                 $obj->employee=$selectedService->employee_id;
