@@ -166,7 +166,7 @@ class ProjectController extends Controller
             $empName=User::where('id',$selectedService->employee_id)->first(['name']);
                 $obj->service=$serName?$serName->name:"";
                 $obj->employee=$empName?$empName->name:"";
-                $rec = array('service'=>$selectedService->service_id, 'employee'=>$selectedService->employee_id);
+                $rec = array('service'=>$serName, 'employee'=>$empName);
                 array_push($arr,$rec);
 
             }
