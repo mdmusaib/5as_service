@@ -35,7 +35,7 @@ class UserController extends Controller
             );
             return new JsonResponse($response, $code);
     }
-        $register = User::create(array(name=>$request->name,email=>$request->email,password=>bcrypt($request->password),phone=>$request->phone,'api_token' => Str::random(60),role=>$request->role));
+        $register = User::create(array('name'=>$request->name,"email"=>$request->email,"password"=>bcrypt($request->password),"phone"=>$request->phone,'api_token' => Str::random(60),"role"=>$request->role));
         return $register;
     }
 }
