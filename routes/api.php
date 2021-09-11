@@ -83,3 +83,4 @@ Route::get('task/fetchEachEmployeeTask', 'EmployeeController@fetchEachEmployeeTa
 Route::get('project/edit/{id}', 'ProjectController@show');
 
 Route::post('employee/register', 'UserController@register');
+Route::post('user/register', 'UserController@register');
