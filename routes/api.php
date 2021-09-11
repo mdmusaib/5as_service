@@ -23,6 +23,7 @@ return $request->user();
 });
 
 
+Route::post('employee/register', 'UserController@register');
 
 Route::get('lead/generateQuotes/{id}', 'ProjectController@generateQuotes');
 

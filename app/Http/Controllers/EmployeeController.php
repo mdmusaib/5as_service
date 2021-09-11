@@ -102,7 +102,6 @@ class EmployeeController extends Controller
     public function fetchEachEmployeeTask(Request $request){
         $task=Task::all();
         return EmployeeTasks::collection($task)->all();
-        return $task;
     }
 
     /**
