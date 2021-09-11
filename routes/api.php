@@ -23,7 +23,7 @@ return $request->user();
 });
 
 
-Route::post('employee/register', 'UserController@register');
+
 
 Route::get('lead/generateQuotes/{id}', 'ProjectController@generateQuotes');
 
@@ -82,3 +82,4 @@ Route::get('task/fetchEachEmployeeTask', 'EmployeeController@fetchEachEmployeeTa
 
 Route::get('project/edit/{id}', 'ProjectController@show');
 
+Route::post('employee/register', 'UserController@register');
