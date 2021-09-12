@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $allUsers = User::all(['id','name','role']);
+        $allUsers = User::all(['id','name','email','phone','role']);
         return $allUsers;
     }
 
