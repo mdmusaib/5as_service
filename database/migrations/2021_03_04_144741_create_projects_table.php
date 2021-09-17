@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('status')->default(true);
-            $table->enum('current_status', ['CAPTURED', 'FOLLOWUP', 'QUOTESENT', 'NEGOTIATION', 'QUOTEFINAL', 'QUOTECONFIRMED', 'ONHOLD', 'DELAYED', 'CANCELLED'])->default('CAPTURED');
+            $table->enum('current_status', ['CAPTURED','ASSIGNED','VIDEO SONG SELECTION PENDING','PP COMPLETED','LINK SHARED','RAW PICTURE SENT TO CUSTOER','PICTURE SELECTION PENDING','WAITING ON CUSTOMER','QC DONE','REWORK','COMPLETE','FOLLOWUP', 'QUOTESENT', 'NEGOTIATION', 'QUOTEFINAL', 'QUOTECONFIRMED', 'ONHOLD', 'DELAYED', 'CANCELLED'])->default('CAPTURED');
             $table->boolean('is_lead')->default(true);
             $table->boolean('is_completed')->default(false);
             $table->dateTime('next_follow_up')->nullable();
