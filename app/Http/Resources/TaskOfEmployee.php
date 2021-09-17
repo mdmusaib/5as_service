@@ -18,7 +18,7 @@ class TaskOfEmployee extends JsonResource
      */
     public function toArray($request)
     {
-        $taskDetails=Task::where('id','=',$this->id)->first();
+        $taskDetails=Task::where('id','=',$this->employee_id)->first();
         $finalResponseObj=new stdClass();
         if($taskDetails){
             $finalResponseObj->service=ServicesMaster::where('id', '=', $taskDetails->service_id)->first();
